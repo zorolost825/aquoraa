@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aquora — Freshwater Aquariums, Setup & Maintenance</title>
+  <meta name="description" content="Aquora offers professional freshwater aquarium setup, maintenance, and consultation in Bengaluru." />
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0e1b24;         /* Deep navy */
+      --card:#101f2a;       /* Card background */
+      --muted:#87a7b5;      /* Muted text */
+      --text:#eaf3f7;       /* Main text */
+      --brand:#39c3d9;      /* Aqua accent */
+      --brand-2:#73e0b7;    /* Secondary accent */
+      --danger:#ff8a7a;
+      --shadow:0 10px 25px rgba(0,0,0,.25);
+      --radius:14px;
+      --radius-sm:10px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:linear-gradient(180deg,#0a141b 0%, var(--bg) 100%); color:var(--text); font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    a{color:var(--brand);text-decoration:none}
+    img{max-width:100%;display:block}
+    /* Layout */
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+    header{position:sticky;top:0;background:rgba(16,31,42,.75);backdrop-filter:blur(8px);border-bottom:1px solid rgba(135,167,181,.15);z-index:20}
+    .nav{display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand .logo{width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 70% 30%, var(--brand) 0%, var(--brand-2) 40%, #0e1b24 75%); box-shadow:0 0 20px rgba(57,195,217,.4)}
+    .brand h1{font-size:18px;margin:0;font-weight:700;letter-spacing:.3px}
+    .nav-links{display:flex;gap:18px;flex-wrap:wrap}
+    .nav-links a{padding:10px 14px;border-radius:10px}
+    .nav-links a:hover{background:rgba(135,167,181,.12)}
+    .cta{padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--brand),var(--brand-2));color:#042126;font-weight:700}
+    /* Hero */
+    .hero{padding:64px 0}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px}
+    .hero-card{background:linear-gradient(180deg,rgba(57,195,217,.15),rgba(16,31,42,.6)); border:1px solid rgba(135,167,181,.15); border-radius:var(--radius); padding:32px; box-shadow:var(--shadow)}
+    .hero h2{font-size:36px; margin:0 0 12px}
+    .hero p{color:var(--muted); font-size:16px; margin:0 0 16px}
+    .buttons{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{padding:12px 16px;border-radius:12px;font-weight:700;border:1px solid rgba(135,167,181,.25)}
+    .btn.primary{background:linear-gradient(90deg,var(--brand),var(--brand-2));color:#042126;border:none}
+    .btn.secondary{background:rgba(135,167,181,.12)}
+    .hero-art{background:radial-gradient(circle at 40% 40%, rgba(57,195,217,.25), rgba(16,31,42,.7)); border:1px solid rgba(135,167,181,.15); border-radius:var(--radius); padding:24px; display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow)}
+    .bubble{width:110px;height:110px;border-radius:50%;background:radial-gradient(circle at 35% 35%, #c7f7ff 0%, var(--brand) 35%, rgba(57,195,217,.1) 100%); filter:blur(.2px); box-shadow:0 6px 30px rgba(57,195,217,.35); position:relative; animation:float 8s ease-in-out infinite}
+    .bubble:after{content:""; position:absolute; top:18px; left:22px; width:18px; height:18px; border-radius:50%; background:rgba(255,255,255,.75)}
+    @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-18px)}100%{transform:translateY(0)}}
+    /* Sections */
+    section{margin:28px 0}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:var(--card);border:1px solid rgba(135,167,181,.15); border-radius:var(--radius-sm); padding:18px; box-shadow:var(--shadow)}
+    .card h3{margin:0 0 6px;font-size:18px}
+    .price{font-weight:700;color:var(--brand)}
+    .muted{color:var(--muted)}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(135,167,181,.12); border:1px solid rgba(135,167,181,.2); margin-right:6px; font-size:12px}
+    /* Gallery */
+    .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .shot{aspect-ratio:4/3;border-radius:12px; background:linear-gradient(135deg, rgba(115,224,183,.25), rgba(57,195,217,.25)); border:1px solid rgba(135,167,181,.15); box-shadow:var(--shadow)}
+    /* Testimonials */
+    .quote{background:rgba(57,195,217,.08); border:1px solid rgba(135,167,181,.2); border-radius:12px; padding:14px}
+    /* Contact */
+    form{display:grid;gap:12px}
+    input,textarea{padding:12px 14px;border-radius:10px;border:1px solid rgba(135,167,181,.25); background:#0b1720; color:var(--text)}
+    textarea{min-height:120px}
+    .footer{margin-top:36px;padding:24px 0;color:var(--muted);border-top:1px solid rgba(135,167,181,.15)}
+    /* Responsive */
+    @media (max-width:900px){
+      .hero-grid{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr 1fr}
+      .gallery{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:560px){
+      .cards,.gallery{grid-template-columns:1fr}
+      .hero h2{font-size:28px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <h1>Aquora</h1>
+      </div>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#gallery">Gallery</a>
+       
+        <a href="#contact" class="cta">Book now</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div class="hero-grid">
+        <div class="hero-card">
+          <h2>Where water becomes wonder.</h2>
+          <p>Professional freshwater aquarium setup, maintenance, and consultation in Bengaluru South. Clear plans, clean tanks, and care that lasts.</p>
+          <div class="buttons">
+            <a href="#services" class="btn primary">View services</a>
+            <a href="#contact" class="btn secondary">Get a quote</a>
+          </div>
+          <div style="margin-top:12px;">
+            <span class="pill">Freshwater</span>
+            <span class="pill">Aquascaping</span>
+            <span class="pill">Plants & Filtration</span>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="bubble"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <h2>About Aquora</h2>
+      <p class="muted">Born from a lifelong fishkeeping hobby, Aquora turns clear vision into living freshwater worlds. From layout to livestock, we guide you with practical steps and clean execution.</p>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+      <h2>Services & starting prices</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Freshwater setup</h3>
+          <p class="muted">Aquascape design, substrate, filtration, cycling, and beginner‑friendly fish.</p>
+          <p class="price">Starting at ₹2,000</p>
+        </div>
+        <div class="card">
+          <h3>Monthly maintenance</h3>
+          <p class="muted">Water changes, glass clean, filter rinse, plant trim, parameter check.</p>
+          <p class="price">Starting at ₹1,200 / visit</p>
+        </div>
+        <div class="card">
+          <h3>Consultation</h3>
+          <p class="muted">Upgrade plans, troubleshooting, stocking advice, aquascape refresh.</p>
+          <p class="price">₹200 / 45 min</p>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:10px;">Final quotes depend on tank size, equipment, and travel within Bengaluru South.</p>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery">
+      <h2>Gallery</h2>
+      <div class="gallery">
+        <div class="shot" title="Planted nano tank"></div>
+        <div class="shot" title="Community freshwater tank"></div>
+        <div class="shot" title="Minimal aquascape"></div>
+        <div class="shot" title="Office reception tank"></div>
+      </div>
+      <p class="muted" style="margin-top:10px;">Add your tank photos here to showcase transformations.</p>
+    </section>
+
+
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2>Contact & booking</h2>
+      <p class="muted">Bengaluru South • Mon–Sat • 10:00–19:00</p>
+      <div class="cards">
+        <div class="card">
+          <h3>Quick WhatsApp</h3>
+          <p class="muted">Chat now for a fast quote and available slots.</p>
+          <p><a class="btn primary" href="https://wa.me/918884707536" target="_blank" rel="noopener">Message on WhatsApp</a></p>
+        </div>
+        <div class="card">
+          <h3>Email form</h3>
+          <form id="contactForm">
+            <input type="text" name="name" placeholder="Your name" required />
+            <input type="email" name="email" placeholder="Your email" required />
+            <textarea name="message" placeholder="Tell us about your tank (size, goals)" required></textarea>
+            <button class="btn secondary" type="submit">Send</button>
+            <p id="formStatus" class="muted" style="margin:6px 0 0;"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <small>© <span id="year"></span> Aquora. All rights reserved.</small>
+      </div>
+    </footer>
+  </main>
+
+  <script herf="fish.js"></script>
+</body>
+</html>
